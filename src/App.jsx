@@ -85,6 +85,11 @@ function App() {
 
             <main
               className={`main-content ${isSidebarOpen ? 'expanded' : 'collapsed'} ${theme === "light" ? "bg-light text-dark" : theme === "dark" ? "bg-dark text-white" : theme === "nature" ? "bg-nature text-dark" : "bg-sunset text-dark"}`}
+              style={{
+                marginLeft: isSidebarOpen ? '16rem' : '4.5rem',
+                width: `calc(100% - ${isSidebarOpen ? '16rem' : '4.5rem'})`,
+                transition: 'margin-left 0.3s ease-in-out, width 0.3s ease-in-out'
+              }}
             >
               <Routes>
                 <Route path="/" element={<Dashboard theme={theme} setTheme={setTheme} />} />
