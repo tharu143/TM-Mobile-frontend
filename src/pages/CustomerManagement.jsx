@@ -516,139 +516,90 @@ const CustomerManagement = ({ theme, setTheme }) => {
             {editingCustomer ? "Edit Customer" : "Add New Customer"}
           </h2>
           <form onSubmit={handleSubmit}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))", gap: "0.75rem" }}>
-              <div>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>Customer Name *</label>
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Customer Name *</label>
                 <input
+                  className="form-input"
                   type="text"
                   placeholder="Enter name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
                 />
               </div>
-              <div>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>Phone Number *</label>
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Phone Number *</label>
                 <input
+                  className="form-input"
                   type="text"
                   placeholder="+91 9876543210"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   required
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
                 />
               </div>
-              <div>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>Email</label>
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Email</label>
                 <input
+                  className="form-input"
                   type="email"
                   placeholder="example@gmail.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
                 />
               </div>
-              <div>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>Date of Birth</label>
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Date of Birth</label>
                 <input
+                  className="form-input"
                   type="date"
                   value={formData.dateOfBirth}
                   onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
                 />
               </div>
-              <div>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>City</label>
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>City</label>
                 <input
+                  className="form-input"
                   type="text"
-                  placeholder="Enter city"
+                  placeholder="City"
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
                 />
               </div>
-              <div>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>Pincode</label>
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Pincode</label>
                 <input
+                  className="form-input"
                   type="text"
-                  placeholder="600017"
+                  placeholder="Pincode"
                   value={formData.pincode}
                   onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
                 />
               </div>
-              <div style={{ gridColumn: "1 / -1" }}>
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor, fontSize: "0.875rem" }}>Address</label>
-                <input
-                  type="text"
-                  placeholder="Enter address"
+              <div className="form-group" style={{ gridColumn: "1 / -1" }}>
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Address</label>
+                <textarea
+                  className="form-input"
+                  placeholder="Full Address"
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                   disabled={loading}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    border: `1px solid ${styles.border}`,
-                    borderRadius: styles.radius,
-                    fontSize: "0.875rem",
-                    backgroundColor: styles.input,
-                    color: styles.foreground
-                  }}
+                  rows="3"
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground, resize: "vertical" }}
                 />
               </div>
             </div>

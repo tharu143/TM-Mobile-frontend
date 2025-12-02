@@ -1036,113 +1036,116 @@ const InventoryManagement = ({ theme, setTheme }) => {
       {showAddForm && (
         <form onSubmit={handleSubmit} style={{ backgroundColor: styles.cardBg, padding: "1.5rem", borderRadius: styles.radius, boxShadow: styles.shadow, marginBottom: "2rem" }}>
           <h2 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "1rem", color: styles.textColor }}>{editingProduct ? "Edit Product" : editingMobile ? "Edit Mobile Type" : editingAccessory ? "Edit Accessory Type" : formType === "mobile" ? "Add Mobile Type" : formType === "accessories" ? "Add Accessory Type" : "Add Product"}</h2>
-          <div className="row g-3">
+          <div className="form-grid">
             {formType === "product" && (
               <>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Name *</label>
-                  <input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Product Name *</label>
+                  <input className="form-input" type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Price (₹) *</label>
-                  <input type="number" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Price *</label>
+                  <div style={{ position: "relative" }}>
+                    <span style={{ position: "absolute", left: "0.75rem", top: "50%", transform: "translateY(-50%)", color: styles.mutedForeground }}>₹</span>
+                    <input className="form-input" type="number" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} required style={{ paddingLeft: "2rem", borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
+                  </div>
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Stock Quantity *</label>
-                  <input type="number" value={formData.stock} onChange={(e) => setFormData({ ...formData, stock: e.target.value })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Stock Quantity *</label>
+                  <input className="form-input" type="number" value={formData.stock} onChange={(e) => setFormData({ ...formData, stock: e.target.value })} required style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Category *</label>
-                  <input type="text" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value, model: "", accessoryType: "", newMobile: "", newAccessoryName: "", newAccessoryModel: "", type: "" })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Category *</label>
+                  <input className="form-input" type="text" value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value, model: "", accessoryType: "", newMobile: "", newAccessoryName: "", newAccessoryModel: "", type: "" })} required style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
                 {formData.category === "Mobile" && (
                   <>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Existing Model</label>
-                      <select value={formData.model} onChange={(e) => setFormData({ ...formData, model: e.target.value, newMobile: "" })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }}>
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>Existing Model</label>
+                      <select className="form-input" value={formData.model} onChange={(e) => setFormData({ ...formData, model: e.target.value, newMobile: "" })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}>
                         <option value="">Select a model</option>
                         {mobiles.map((mobile) => <option key={mobile._id} value={mobile.name}>{mobile.name}</option>)}
                       </select>
                     </div>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>New Mobile Type</label>
-                      <input type="text" value={formData.newMobile} onChange={(e) => setFormData({ ...formData, newMobile: e.target.value, model: "" })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>New Mobile Type</label>
+                      <input className="form-input" type="text" value={formData.newMobile} onChange={(e) => setFormData({ ...formData, newMobile: e.target.value, model: "" })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                     </div>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Type (Brand/General Model)</label>
-                      <input type="text" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>Type (Brand/General Model)</label>
+                      <input className="form-input" type="text" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                     </div>
                   </>
                 )}
                 {formData.category === "Accessories" && (
                   <>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Existing Accessory Type</label>
-                      <select value={formData.accessoryType} onChange={(e) => setFormData({ ...formData, accessoryType: e.target.value, newAccessoryName: "", newAccessoryModel: "" })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }}>
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>Existing Accessory Type</label>
+                      <select className="form-input" value={formData.accessoryType} onChange={(e) => setFormData({ ...formData, accessoryType: e.target.value, newAccessoryName: "", newAccessoryModel: "" })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}>
                         <option value="">Select an accessory type</option>
                         {accessories.map((accessory) => <option key={accessory._id} value={accessory.accessoryType}>{accessory.accessoryModel} - {accessory.accessoryName}</option>)}
                       </select>
                     </div>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>New Accessory Name</label>
-                      <input type="text" value={formData.newAccessoryName} onChange={(e) => setFormData({ ...formData, newAccessoryName: e.target.value, accessoryType: "" })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>New Accessory Name</label>
+                      <input className="form-input" type="text" value={formData.newAccessoryName} onChange={(e) => setFormData({ ...formData, newAccessoryName: e.target.value, accessoryType: "" })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                     </div>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>New Accessory Model</label>
-                      <input type="text" value={formData.newAccessoryModel} onChange={(e) => setFormData({ ...formData, newAccessoryModel: e.target.value, accessoryType: "" })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>New Accessory Model</label>
+                      <input className="form-input" type="text" value={formData.newAccessoryModel} onChange={(e) => setFormData({ ...formData, newAccessoryModel: e.target.value, accessoryType: "" })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                     </div>
-                    <div className="col-md-6 col-lg-4">
-                      <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Type (Brand/General Model)</label>
-                      <input type="text" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                    <div className="form-group">
+                      <label className="form-label" style={{ color: styles.secondaryTextColor }}>Type (Brand/General Model)</label>
+                      <input className="form-input" type="text" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                     </div>
                   </>
                 )}
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Supplier</label>
-                  <input type="text" value={formData.supplier} onChange={(e) => setFormData({ ...formData, supplier: e.target.value })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Supplier</label>
+                  <input className="form-input" type="text" value={formData.supplier} onChange={(e) => setFormData({ ...formData, supplier: e.target.value })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Minimum Stock Level</label>
-                  <input type="number" value={formData.minStock} onChange={(e) => setFormData({ ...formData, minStock: e.target.value })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Minimum Stock Level</label>
+                  <input className="form-input" type="number" value={formData.minStock} onChange={(e) => setFormData({ ...formData, minStock: e.target.value })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Barcode</label>
-                  <input type="text" value={formData.barcode} onChange={(e) => setFormData({ ...formData, barcode: e.target.value })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Barcode</label>
+                  <input className="form-input" type="text" value={formData.barcode} onChange={(e) => setFormData({ ...formData, barcode: e.target.value })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Image ID (Read-only)</label>
-                  <input type="text" value={formData.image_id} readOnly style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.inputReadOnlyBg, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Image ID (Read-only)</label>
+                  <input className="form-input" type="text" value={formData.image_id} readOnly style={{ borderColor: styles.border, backgroundColor: styles.inputReadOnlyBg, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Product Image</label>
-                  <input type="file" accept="image/*" onChange={handleImageChange} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Product Image</label>
+                  <input className="form-input" type="file" accept="image/*" onChange={handleImageChange} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                   {imagePreview && (
-                    <div style={{ width: "150px", height: "150px", overflow: "hidden", borderRadius: styles.radius, marginTop: "0.5rem" }}>
-                      <img src={imagePreview} alt="Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <div style={{ width: "100%", height: "150px", overflow: "hidden", borderRadius: styles.radius, marginTop: "0.5rem", border: `1px solid ${styles.border}` }}>
+                      <img src={imagePreview} alt="Preview" style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: styles.muted }} />
                     </div>
                   )}
                 </div>
               </>
             )}
             {formType === "mobile" && (
-              <div className="col-md-6 col-lg-4">
-                <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Mobile Name *</label>
-                <input type="text" value={formData.newMobile} onChange={(e) => setFormData({ ...formData, newMobile: e.target.value })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }}>Mobile Name *</label>
+                <input className="form-input" type="text" value={formData.newMobile} onChange={(e) => setFormData({ ...formData, newMobile: e.target.value })} required style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
               </div>
             )}
             {formType === "accessories" && (
               <>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Accessory Name *</label>
-                  <input type="text" value={formData.newAccessoryName} onChange={(e) => setFormData({ ...formData, newAccessoryName: e.target.value })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Accessory Name *</label>
+                  <input className="form-input" type="text" value={formData.newAccessoryName} onChange={(e) => setFormData({ ...formData, newAccessoryName: e.target.value })} required style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Accessory Model *</label>
-                  <input type="text" value={formData.newAccessoryModel} onChange={(e) => setFormData({ ...formData, newAccessoryModel: e.target.value })} required style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Accessory Model *</label>
+                  <input className="form-input" type="text" value={formData.newAccessoryModel} onChange={(e) => setFormData({ ...formData, newAccessoryModel: e.target.value })} required style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
-                <div className="col-md-6 col-lg-4">
-                  <label style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}>Type (Brand/General Model)</label>
-                  <input type="text" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })} style={{ width: "100%", padding: "0.5rem", border: `1px solid ${styles.border}`, borderRadius: styles.radius, fontSize: "1rem", backgroundColor: styles.input, color: styles.foreground }} />
+                <div className="form-group">
+                  <label className="form-label" style={{ color: styles.secondaryTextColor }}>Type (Brand/General Model)</label>
+                  <input className="form-input" type="text" value={formData.type} onChange={(e) => setFormData({ ...formData, type: e.target.value })} style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }} />
                 </div>
               </>
             )}

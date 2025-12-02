@@ -633,42 +633,35 @@ const SettingsPage = ({ theme, setTheme }) => {
             GST Settings
           </h2>
           <form onSubmit={handleSaveGst}>
-            <div style={{ marginBottom: "1rem" }}>
-              <label
-                style={{ display: "block", marginBottom: "0.25rem", color: styles.secondaryTextColor }}
-                htmlFor="gstPercentage"
-              >
-                GST Percentage (%)
-              </label>
-              <input
-                type="number"
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  border: `1px solid ${styles.border}`,
-                  borderRadius: styles.radius,
-                  backgroundColor: styles.input,
-                  color: styles.foreground,
-                }}
-                id="gstPercentage"
-                value={gstPercentage}
-                onChange={(e) => setGstPercentage(e.target.value)}
-                placeholder="Enter GST percentage (e.g., 18)"
-                min="0"
-                step="0.01"
-              />
-            </div>
-            <div style={{ marginBottom: "1rem" }}>
-              <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: styles.secondaryTextColor }}>
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label" style={{ color: styles.secondaryTextColor }} htmlFor="gstPercentage">
+                  GST Percentage (%)
+                </label>
                 <input
-                  type="checkbox"
-                  style={{ margin: 0 }}
-                  id="enableGst"
-                  checked={enableGst}
-                  onChange={(e) => setEnableGst(e.target.checked)}
+                  className="form-input"
+                  type="number"
+                  style={{ borderColor: styles.border, backgroundColor: styles.input, color: styles.foreground }}
+                  id="gstPercentage"
+                  value={gstPercentage}
+                  onChange={(e) => setGstPercentage(e.target.value)}
+                  placeholder="Enter GST percentage (e.g., 18)"
+                  min="0"
+                  step="0.01"
                 />
-                Enable GST
-              </label>
+              </div>
+              <div className="form-group" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: styles.secondaryTextColor, cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    style={{ margin: 0, width: "1.25rem", height: "1.25rem" }}
+                    id="enableGst"
+                    checked={enableGst}
+                    onChange={(e) => setEnableGst(e.target.checked)}
+                  />
+                  Enable GST
+                </label>
+              </div>
             </div>
             {error && (
               <div
@@ -681,26 +674,29 @@ const SettingsPage = ({ theme, setTheme }) => {
                   alignItems: "center",
                   gap: "0.5rem",
                   marginBottom: "1rem",
+                  marginTop: "1rem"
                 }}
               >
                 <X size={16} />
                 Warning: {error}
               </div>
             )}
-            <button
-              type="submit"
-              style={{
-                padding: "0.5rem 1rem",
-                backgroundColor: styles.primary,
-                color: styles.primaryForeground,
-                border: "none",
-                borderRadius: styles.radius,
-                cursor: loading ? "not-allowed" : "pointer",
-              }}
-              disabled={loading}
-            >
-              {loading ? "Saving..." : "Save GST Settings"}
-            </button>
+            <div style={{ marginTop: "1.5rem" }}>
+              <button
+                type="submit"
+                style={{
+                  padding: "0.5rem 1rem",
+                  backgroundColor: styles.primary,
+                  color: styles.primaryForeground,
+                  border: "none",
+                  borderRadius: styles.radius,
+                  cursor: loading ? "not-allowed" : "pointer",
+                }}
+                disabled={loading}
+              >
+                {loading ? "Saving..." : "Save GST Settings"}
+              </button>
+            </div>
           </form>
         </div>
       )}
