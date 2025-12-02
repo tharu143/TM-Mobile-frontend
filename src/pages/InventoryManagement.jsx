@@ -546,7 +546,7 @@ const InventoryManagement = ({ theme, setTheme }) => {
     const files = Array.from(e.target.files);
     if (files.length === 0) return;
     const formData = new FormData();
-    files.forEach((file, index) => formData.append(`images[${index}]`, file));
+    files.forEach((file) => formData.append("images", file));
     try {
       const response = await axios.post("/api/upload/images", formData, { headers: { "Content-Type": "multipart/form-data" } });
       setUploadedImages((prev) => [...prev, ...response.data.uploadedImages]);
