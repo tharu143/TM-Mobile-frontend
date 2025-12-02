@@ -16,15 +16,21 @@
   /* Prevent horizontal scroll */
 }
 
-/* Sidebar Styles (overriding some inline styles for responsiveness if needed) */
+/* Sidebar Styles - ALWAYS LEFT SIDE */
 .sidebar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  z-index: 1000 !important;
+  transition: width 0.3s ease-in-out !important;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* NEVER allow horizontal layout */
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Responsive Breakpoints */

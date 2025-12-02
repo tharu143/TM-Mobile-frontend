@@ -15,11 +15,9 @@ const Sidebar = ({ activePage, setActivePage, isOpen, setIsOpen, theme, toggleTh
   ];
 
   const sidebarStyles = {
-    // Layout handled by CSS class 'sidebar-container'
+    // Only background and non-layout styles
     background: theme === "light" ? "linear-gradient(135deg, #2174ea, #2174ea70)" : theme === "dark" ? "linear-gradient(135deg, #7b2cbf, #7b2cbfaa)" : theme === "nature" ? "linear-gradient(135deg, #4caf50, #4caf5070)" : "linear-gradient(135deg, #ff9800, #ff980070)",
-    // Keep z-index and overflow just in case, though CSS handles it too
-    zIndex: 50,
-    overflow: "hidden",
+    // DO NOT set position, top, left, width, height here - CSS handles it
   };
 
   const logoSectionStyles = {
