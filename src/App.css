@@ -1,65 +1,113 @@
-/* Add any additional styles specific to App.jsx here */
-</x ­
+/* App.css */
 
-#### 6. `src/App.jsx`
-The main App component (provided code).
+/* Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
 
-<xaiArtifact artifact_id="8e9ebc43-367e-4291-a56a-9365cde542a7" artifact_version_id="2d51af6d-dda1-4afd-9c40-d2994457f9ac" title="App.jsx" contentType="application/javascript">
-import { useState } from "react";
-import { Toaster } from "./components/ui/toaster";
-import { Toaster as Sonner } from "./components/ui/sonner";
-import { TooltipProvider } from "./components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard";
-import PointOfSale from "./pages/PointOfSale";
-import InventoryManagement from "./pages/InventoryManagement";
-import CustomerManagement from "./pages/CustomerManagement";
-import Reports from "./pages/Reports";
+.main-content {
+  flex-grow: 1;
+  padding: 1.5rem;
+  transition: margin-left 0.3s ease-in-out;
+  width: 100%;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+}
 
-const queryClient = new QueryClient();
+/* Sidebar Styles (overriding some inline styles for responsiveness if needed) */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+}
 
-const App = () => {
-  const [activePage, setActivePage] = useState("dashboard");
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
+    /* Override inline style if present */
+    padding: 1rem;
+  }
 
-  const renderPage = () => {
-    switch (activePage) {
-      case "dashboard":
-        return <Dashboard />;
-      case "pos":
-        return <PointOfSale />;
-      case "inventory":
-        return <InventoryManagement />;
-      case "customers":
-        return <CustomerManagement />;
-      case "reports":
-        return <Reports />;
-      case "settings":
-        return (
-          <div className="p-6">
-            <h1 className="text-3xl font-bold">Settings</h1>
-            <p className="text-gray-600 mt-2">Settings page coming soon...</p>
-          </div>
-        );
-      default:
-        return <Dashboard />;
-    }
-  };
+  .sidebar-container {
+    transform: translateX(-100%);
+    /* Hide sidebar by default on mobile */
+    width: 16rem !important;
+    /* Full width drawer on mobile usually or fixed width */
+  }
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="flex min-h-screen bg-gray-50 w-full">
-          <Sidebar activePage={activePage} setActivePage={setActivePage} />
-          <div className="flex-1 ml-64">
-            {renderPage()}
-          </div>
-        </div>
-        <Toaster />
-        <Sonner />
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+  .sidebar-container.open {
+    transform: translateX(0);
+  }
 
-export default App;
+  /* Overlay when sidebar is open on mobile */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-overlay {
+    display: none;
+  }
+
+  .sidebar-container.collapsed {
+    width: 4.5rem !important;
+  }
+
+  .sidebar-container.expanded {
+    width: 16rem !important;
+  }
+
+  .main-content.expanded {
+    margin-left: 16rem;
+  }
+
+  .main-content.collapsed {
+    margin-left: 4.5rem;
+  }
+}
+
+/* Global improvements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+}
+
+input,
+select,
+textarea {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}

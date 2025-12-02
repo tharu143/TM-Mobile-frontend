@@ -377,7 +377,7 @@ const CustomerManagement = ({ theme, setTheme }) => {
   const selectedTheme = themeOptions.find(t => t.id === theme) || themeOptions[0];
 
   return (
-    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground, minHeight: "100vh", padding: "1rem" }}>
+    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground }}>
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem", gap: "1rem" }}>
         <div>
           <h1 style={{ fontSize: "1.5rem", fontWeight: "700", color: styles.textColor }}>Customer Management</h1>

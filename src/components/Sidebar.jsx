@@ -3,26 +3,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Home, ShoppingCart, Package, Users, BarChart3, Settings, Phone, LogOut, ChevronLeft, ChevronRight, Moon, Sun, Wrench } from "lucide-react";
 
-const Sidebar = ({ activePage, setActivePage, isOpen, setIsOpen, theme, toggleTheme }) => {
+const Sidebar = ({ activePage, setActivePage, isOpen, setIsOpen, theme, toggleTheme, className }) => {
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: Home, path: "/" },
     { id: "pos", label: "Point of Sale", icon: ShoppingCart, path: "/pos" },
     { id: "inventory", label: "Inventory", icon: Package, badge: "12", path: "/inventory" },
     { id: "customers", label: "Customers", icon: Users, path: "/customers" },
     { id: "reports", label: "Reports", icon: BarChart3, path: "/reports" },
-    { id: "service", label: "Service", icon: Wrench, path: "/service" }, // Added Service menu item
+    { id: "service", label: "Service", icon: Wrench, path: "/service" },
     { id: "settings", label: "Settings", icon: Settings, path: "/settings" },
   ];
 
   const sidebarStyles = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    height: "100%",
-    width: isOpen ? "16rem" : "4rem",
+    // Layout handled by CSS class 'sidebar-container'
     background: theme === "light" ? "linear-gradient(135deg, #2174ea, #2174ea70)" : theme === "dark" ? "linear-gradient(135deg, #7b2cbf, #7b2cbfaa)" : theme === "nature" ? "linear-gradient(135deg, #4caf50, #4caf5070)" : "linear-gradient(135deg, #ff9800, #ff980070)",
-    boxShadow: "0 0 20px -2px rgba(0,0,0,0.15)",
-    transition: "width 0.3s ease-in-out",
+    // Keep z-index and overflow just in case, though CSS handles it too
     zIndex: 50,
     overflow: "hidden",
   };
@@ -70,7 +65,7 @@ const Sidebar = ({ activePage, setActivePage, isOpen, setIsOpen, theme, toggleTh
   const themeToggleButtonStyles = { width: "100%", height: "2.75rem", display: "flex", alignItems: "center", padding: "0.5rem", background: "none", border: `1px solid ${theme === "light" ? "#d1d5db" : "#4b5563"}`, borderRadius: "0.25rem", color: theme === "light" ? "#6b7280" : "#9ca3af", cursor: "pointer", marginBottom: "0.5rem", transition: "background-color 0.2s" };
 
   return (
-    <div style={sidebarStyles}>
+    <div style={sidebarStyles} className={className}>
       <div style={logoSectionStyles}>
         {isOpen && (
           <div style={logoContainerStyles}>

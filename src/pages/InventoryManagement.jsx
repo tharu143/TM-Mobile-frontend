@@ -881,7 +881,7 @@ const InventoryManagement = ({ theme, setTheme }) => {
   const selectedTheme = themeOptions.find(t => t.id === theme) || themeOptions[0];
   const SelectedIcon = selectedTheme.icon;
   return (
-    <div className="container-fluid" style={{ backgroundColor: styles.bgColor, color: styles.foreground, minHeight: "100vh", padding: "2rem" }}>
+    <div className="container-fluid" style={{ backgroundColor: styles.bgColor, color: styles.foreground }}>
       <div className="row justify-content-between align-items-center mb-3">
         <div className="col-auto">
           <h1 style={{ fontSize: "1.875rem", fontWeight: "700", marginBottom: "0.5rem", color: styles.textColor }}>Inventory Management</h1>

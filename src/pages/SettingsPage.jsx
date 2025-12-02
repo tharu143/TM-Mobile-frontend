@@ -469,7 +469,7 @@ const SettingsPage = ({ theme, setTheme }) => {
   ];
   const selectedTheme = themeOptions.find((t) => t.id === theme) || themeOptions[0];
   return (
-    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground, minHeight: "100vh", padding: "2rem" }} className="container">
+    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground }} className="container">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
         <div>
           <h1 style={{ fontSize: "1.875rem", fontWeight: "700", color: styles.textColor }}>Settings</h1>

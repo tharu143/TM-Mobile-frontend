@@ -669,8 +669,8 @@ const PointOfSale = ({ theme, setTheme }) => {
   }
 
   return (
-    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground, minHeight: "100vh", display: "flex", flexDirection: isMobile ? "column" : "row", overflowX: "hidden" }}>
-      <div style={{ flexGrow: 1, padding: "2rem", overflow: "auto" }}>
+    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground, display: "flex", flexDirection: isMobile ? "column" : "row", overflowX: "hidden" }}>
+      <div style={{ flexGrow: 1, overflow: "auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
           <div>
             <h1 style={{ fontSize: "1.875rem", fontWeight: "700", color: styles.textColor }}>Point of Sale</h1>

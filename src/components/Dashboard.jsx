@@ -524,10 +524,10 @@ const Dashboard = ({ theme, setTheme }) => {
   }
 
   return (
-    <div className="container-fluid" style={{ backgroundColor: styles.bgColor, color: styles.foreground, minHeight: "100vh", padding: "2rem" }}>
+    <div className="container-fluid" style={{ backgroundColor: styles.bgColor, color: styles.foreground }}>
       {error && <div className="alert alert-danger">{error}</div>}
       {message && <div className="alert alert-success">{message}</div>}
-      <div className="row justify-content-between align-items-center mb-3">
+      <div className="row justify-content-between align-items-center mb-4">
         <div className="col-auto">
           <h1 style={{ fontSize: "1.875rem", fontWeight: "700", color: styles.textColor }}>Dashboard</h1>
           <p style={{ fontSize: "1rem", color: styles.secondaryTextColor }}>
@@ -599,66 +599,66 @@ const Dashboard = ({ theme, setTheme }) => {
 
       <div className="row g-3 mb-4">
         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-          <div style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1rem" }}>
+          <div className="card-hover" style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1.5rem" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <div style={{ padding: "0.5rem", borderRadius: "0.5rem", backgroundColor: styles.statusSuccess.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
-                  <DollarSign size={20} style={{ color: styles.statusSuccess }} />
+                <div style={{ padding: "0.75rem", borderRadius: "0.75rem", backgroundColor: styles.statusSuccess.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
+                  <DollarSign size={24} style={{ color: styles.statusSuccess }} />
                 </div>
                 <div>
                   <p style={{ fontSize: "0.875rem", color: styles.secondaryTextColor, marginBottom: "0.25rem" }}>Today's Sales</p>
-                  <h5 style={{ fontSize: "1.25rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>₹{stats.todaySales.toLocaleString()}</h5>
+                  <h5 style={{ fontSize: "1.5rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>₹{stats.todaySales.toLocaleString()}</h5>
                 </div>
               </div>
-              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.statusSuccess.replace('hsl', 'hsla').replace(')', ', 0.1)'), color: styles.statusSuccess }}>+12%</span>
+              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.statusSuccess.replace('hsl', 'hsla').replace(')', ', 0.1)'), color: styles.statusSuccess, fontSize: "0.75rem", fontWeight: "600" }}>+12%</span>
             </div>
           </div>
         </div>
         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-          <div style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1rem" }}>
+          <div className="card-hover" style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1.5rem" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <div style={{ padding: "0.5rem", borderRadius: "0.5rem", backgroundColor: styles.primary.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
-                  <Users size={20} style={{ color: styles.primary }} />
+                <div style={{ padding: "0.75rem", borderRadius: "0.75rem", backgroundColor: styles.primary.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
+                  <Users size={24} style={{ color: styles.primary }} />
                 </div>
                 <div>
                   <p style={{ fontSize: "0.875rem", color: styles.secondaryTextColor, marginBottom: "0.25rem" }}>Total Customers</p>
-                  <h5 style={{ fontSize: "1.25rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>{stats.totalCustomers}</h5>
+                  <h5 style={{ fontSize: "1.5rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>{stats.totalCustomers}</h5>
                 </div>
               </div>
-              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.primary.replace('hsl', 'hsla').replace(')', ', 0.1)'), color: styles.primary }}>+5%</span>
+              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.primary.replace('hsl', 'hsla').replace(')', ', 0.1)'), color: styles.primary, fontSize: "0.75rem", fontWeight: "600" }}>+5%</span>
             </div>
           </div>
         </div>
         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-          <div style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1rem" }}>
+          <div className="card-hover" style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1.5rem" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <div style={{ padding: "0.5rem", borderRadius: "0.5rem", backgroundColor: styles.statusDestructive.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
-                  <AlertTriangle size={20} style={{ color: styles.statusDestructive }} />
+                <div style={{ padding: "0.75rem", borderRadius: "0.75rem", backgroundColor: styles.statusDestructive.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
+                  <AlertTriangle size={24} style={{ color: styles.statusDestructive }} />
                 </div>
                 <div>
                   <p style={{ fontSize: "0.875rem", color: styles.secondaryTextColor, marginBottom: "0.25rem" }}>Low Stock Items</p>
-                  <h5 style={{ fontSize: "1.25rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>{stats.lowStockItems}</h5>
+                  <h5 style={{ fontSize: "1.5rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>{stats.lowStockItems}</h5>
                 </div>
               </div>
-              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.statusDestructive, color: styles.destructiveForeground }}>Alert</span>
+              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.statusDestructive, color: styles.destructiveForeground, fontSize: "0.75rem", fontWeight: "600" }}>Alert</span>
             </div>
           </div>
         </div>
         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-          <div style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1rem" }}>
+          <div className="card-hover" style={{ backgroundColor: styles.cardBg, borderRadius: styles.radius, boxShadow: styles.shadowCard, padding: "1.5rem" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <div style={{ padding: "0.5rem", borderRadius: "0.5rem", backgroundColor: styles.accent.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
-                  <TrendingUp size={20} style={{ color: styles.accent }} />
+                <div style={{ padding: "0.75rem", borderRadius: "0.75rem", backgroundColor: styles.accent.replace('hsl', 'hsla').replace(')', ', 0.1)') }}>
+                  <TrendingUp size={24} style={{ color: styles.accent }} />
                 </div>
                 <div>
                   <p style={{ fontSize: "0.875rem", color: styles.secondaryTextColor, marginBottom: "0.25rem" }}>Total Revenue</p>
-                  <h5 style={{ fontSize: "1.25rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>₹{stats.totalRevenue.toLocaleString()}</h5>
+                  <h5 style={{ fontSize: "1.5rem", fontWeight: "700", color: styles.textColor, margin: 0 }}>₹{stats.totalRevenue.toLocaleString()}</h5>
                 </div>
               </div>
-              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.accent.replace('hsl', 'hsla').replace(')', ', 0.1)'), color: styles.accent }}>+8%</span>
+              <span style={{ padding: "0.25rem 0.5rem", borderRadius: styles.radius, backgroundColor: styles.accent.replace('hsl', 'hsla').replace(')', ', 0.1)'), color: styles.accent, fontSize: "0.75rem", fontWeight: "600" }}>+8%</span>
             </div>
           </div>
         </div>

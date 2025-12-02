@@ -1018,7 +1018,7 @@ const Reports = ({ theme, setTheme }) => {
   const isYearlyReportReady = selectedReport === "yearlyStock" && selectedYear;
   const isReportReady = isMonthlyReportReady || isYearlyReportReady;
   return (
-    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground, minHeight: "100vh", padding: "2rem" }}>
+    <div style={{ backgroundColor: styles.bgColor, color: styles.foreground }}>
       <div className="container-fluid">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
           <div>

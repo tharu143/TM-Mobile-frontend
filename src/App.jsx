@@ -14,10 +14,23 @@ import ServiceAdd from "./pages/service add"; // New add service page
 import ServiceDetails from "./pages/serviceDetails"; // New service details/edit page
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 768);
   const [activePage, setActivePage] = useState("dashboard");
   const [theme, setTheme] = useState("light");
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('loggedIn') === 'true');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsSidebarOpen(false);
+      } else {
+        setIsSidebarOpen(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : theme === "dark" ? "nature" : theme === "nature" ? "sunset" : "light";
@@ -26,15 +39,15 @@ function App() {
     document.body.classList.add(newTheme);
   };
 
+  const closeSidebarOnMobile = () => {
+    if (window.innerWidth <= 768) {
+      setIsSidebarOpen(false);
+    }
+  };
+
   return (
     <BrowserRouter>
-      <div
-        className={`d-flex ${theme}`}
-        style={{
-          minHeight: "100%",
-          backgroundColor: theme === "light" ? "#f8f9fa" : theme === "dark" ? "#1a1a1a" : theme === "nature" ? "#f0f7f4" : "#fff7ed",
-        }}
-      >
+      <div className={`app-container ${theme}`}>
         <style>
           {`
             html, body {
@@ -43,26 +56,23 @@ function App() {
               padding: 0;
               background-color: ${theme === "light" ? "#f8f9fa" : theme === "dark" ? "#1a1a1a" : theme === "nature" ? "#f0f7f4" : "#fff7ed"};
             }
-            .light {
-              background-color: #f8f9fa;
-              color: #000000;
-            }
-            .dark {
-              background-color: #1a1a1a;
-              color: #ffffff;
-            }
-            .nature {
-              background-color: #f0f7f4;
-              color: #1f2937;
-            }
-            .sunset {
-              background-color: #fff7ed;
-              color: #1f2937;
-            }
+            /* ... existing theme styles ... */
+            .light { background-color: #f8f9fa; color: #000000; }
+            .dark { background-color: #1a1a1a; color: #ffffff; }
+            .nature { background-color: #f0f7f4; color: #1f2937; }
+            .sunset { background-color: #fff7ed; color: #1f2937; }
           `}
         </style>
         {isLoggedIn ? (
           <>
+            {/* Mobile Overlay */}
+            {isSidebarOpen && window.innerWidth <= 768 && (
+              <div
+                className="sidebar-overlay"
+                onClick={() => setIsSidebarOpen(false)}
+              />
+            )}
+
             <Sidebar
               isOpen={isSidebarOpen}
               setIsOpen={setIsSidebarOpen}
@@ -70,14 +80,11 @@ function App() {
               setActivePage={setActivePage}
               theme={theme}
               toggleTheme={toggleTheme}
+              className={`sidebar-container ${isSidebarOpen ? 'open expanded' : 'collapsed'}`}
             />
+
             <main
-              className={`flex-grow-1 p-4 ${theme === "light" ? "bg-light text-dark" : theme === "dark" ? "bg-dark text-white" : theme === "nature" ? "bg-nature text-dark" : "bg-sunset text-dark"}`}
-              style={{
-                marginLeft: isSidebarOpen ? "250px" : "70px",
-                transition: "margin-left 0.3s",
-                minHeight: "100vh",
-              }}
+              className={`main-content ${isSidebarOpen ? 'expanded' : 'collapsed'} ${theme === "light" ? "bg-light text-dark" : theme === "dark" ? "bg-dark text-white" : theme === "nature" ? "bg-nature text-dark" : "bg-sunset text-dark"}`}
             >
               <Routes>
                 <Route path="/" element={<Dashboard theme={theme} setTheme={setTheme} />} />
@@ -85,9 +92,9 @@ function App() {
                 <Route path="/customers" element={<CustomerManagement theme={theme} setTheme={setTheme} />} />
                 <Route path="/inventory" element={<InventoryManagement theme={theme} setTheme={setTheme} />} />
                 <Route path="/reports" element={<Reports theme={theme} setTheme={setTheme} />} />
-                <Route path="/service" element={<Service theme={theme} />} /> // Service list
-                <Route path="/service/add" element={<ServiceAdd theme={theme} />} /> // Add service page
-                <Route path="/service/:id" element={<ServiceDetails theme={theme} />} /> // Details/edit page
+                <Route path="/service" element={<Service theme={theme} />} />
+                <Route path="/service/add" element={<ServiceAdd theme={theme} />} />
+                <Route path="/service/:id" element={<ServiceDetails theme={theme} />} />
                 <Route path="/settings" element={<SettingsPage theme={theme} setTheme={setTheme} />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </Routes>
