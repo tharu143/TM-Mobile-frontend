@@ -15,9 +15,20 @@ const Sidebar = ({ activePage, setActivePage, isOpen, setIsOpen, theme, toggleTh
   ];
 
   const sidebarStyles = {
-    // Only background and non-layout styles
+    // Force left side positioning with inline styles (higher priority than CSS)
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    height: '100vh',
+    width: isOpen ? '16rem' : '4.5rem',
+    display: 'flex',
+    flexDirection: 'column',
     background: theme === "light" ? "linear-gradient(135deg, #2174ea, #2174ea70)" : theme === "dark" ? "linear-gradient(135deg, #7b2cbf, #7b2cbfaa)" : theme === "nature" ? "linear-gradient(135deg, #4caf50, #4caf5070)" : "linear-gradient(135deg, #ff9800, #ff980070)",
-    // DO NOT set position, top, left, width, height here - CSS handles it
+    zIndex: 1000,
+    transition: 'width 0.3s ease-in-out',
+    overflowY: 'auto',
+    overflowX: 'hidden',
   };
 
   const logoSectionStyles = {
